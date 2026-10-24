@@ -84,35 +84,44 @@ with open('desyatochka.txt') as file_des, open('kubit.txt') as file_kub, open('p
     two = file_kub.read()
     three = file_pol.read()
 
+def true_value(my_dict, res_dict):
+    for key, value in my_dict.items():
+        d = {}
+        for item in enter:
+            if item in value:
+                d[item] = value[item]
+            else:
+                d[item] = '-'
+            res_dict[key] = d
+    return res_dict
+
 enter = [input() for i in range(int(input()))]
 
 a = [[name, int(price)] for name, price in [item.split(': ') for item in one.split('\n')]]
 b = [[name, int(price)] for name, price in [item.split(': ') for item in two.split('\n')]]
 c = [[name, int(price)] for name, price in [item.split(': ') for item in three.split('\n')]]
 
-my_dict = {}
+my_dict_one = {}
+my_dict_two = {}
+my_dict_three = {}
 
-sort_a = sorted(a, key=lambda x: x[1], reverse=True)
-sort_b = sorted(b, key=lambda x: x[1], reverse=True)
-sort_c = sorted(c, key=lambda x: x[1], reverse=True)
+my_dict_one['Десяточка:'] = dict(a)
+my_dict_two['Кубит:'] = dict(b)
+my_dict_three['Полоса:'] = dict(c)
 
-my_dict['Десяточка:'] = dict(sort_a)
-my_dict['Кубит:'] = dict(sort_b)
-my_dict['Полоса:'] = dict(sort_c)
+res = {}
 
-# for i, j in my_dict.items():
-#     print(i, j)
+true_value(my_dict_one, res)
+true_value(my_dict_two, res)
+true_value(my_dict_three, res)
 
-for key, value in my_dict.items():
-    lst = []
-    d = {}
-    for i, j in value.items():
-        if i in enter:
-            lst.append(i)
-            d[key] = lst
-        else:
-            lst.append('-')
-    print(d)
+
+
+
+
+
+
+
 
 
 
