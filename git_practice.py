@@ -84,6 +84,8 @@ with open('desyatochka.txt') as file_des, open('kubit.txt') as file_kub, open('p
     two = file_kub.read()
     three = file_pol.read()
 
+enter = [input() for i in range(int(input()))]
+
 def true_value(my_dict, res_dict):
     for key, value in my_dict.items():
         d = {}
@@ -95,19 +97,16 @@ def true_value(my_dict, res_dict):
             res_dict[key] = d
     return res_dict
 
-enter = [input() for i in range(int(input()))]
-
-a = [[name, int(price)] for name, price in [item.split(': ') for item in one.split('\n')]]
-b = [[name, int(price)] for name, price in [item.split(': ') for item in two.split('\n')]]
-c = [[name, int(price)] for name, price in [item.split(': ') for item in three.split('\n')]]
+def create_lst(my_lst):
+    return dict([[name, int(price)] for name, price in [item.split(': ') for item in my_lst.split('\n')]])
 
 my_dict_one = {}
 my_dict_two = {}
 my_dict_three = {}
 
-my_dict_one['Десяточка:'] = dict(a)
-my_dict_two['Кубит:'] = dict(b)
-my_dict_three['Полоса:'] = dict(c)
+my_dict_one['Десяточка:'] = create_lst(one)
+my_dict_two['Кубит:'] = create_lst(two)
+my_dict_three['Полоса:'] = create_lst(three)
 
 res = {}
 
@@ -115,7 +114,7 @@ true_value(my_dict_one, res)
 true_value(my_dict_two, res)
 true_value(my_dict_three, res)
 
-
+print(res)
 
 
 
