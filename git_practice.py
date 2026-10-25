@@ -86,6 +86,9 @@ with open('desyatochka.txt') as file_des, open('kubit.txt') as file_kub, open('p
 
 enter = [input() for i in range(int(input()))]
 
+def create_lst(my_lst):
+    return dict([[name, int(price)] for name, price in [item.split(': ') for item in my_lst.split('\n')]])
+
 def true_value(my_dict, res_dict):
     for key, value in my_dict.items():
         d = {}
@@ -93,12 +96,9 @@ def true_value(my_dict, res_dict):
             if item in value:
                 d[item] = value[item]
             else:
-                d[item] = '-'
+                d[item] = None
             res_dict[key] = d
     return res_dict
-
-def create_lst(my_lst):
-    return dict([[name, int(price)] for name, price in [item.split(': ') for item in my_lst.split('\n')]])
 
 total_dict = {}
 
