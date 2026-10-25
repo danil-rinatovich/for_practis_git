@@ -100,21 +100,15 @@ def true_value(my_dict, res_dict):
 def create_lst(my_lst):
     return dict([[name, int(price)] for name, price in [item.split(': ') for item in my_lst.split('\n')]])
 
-my_dict_one = {}
-my_dict_two = {}
-my_dict_three = {}
+total_dict = {}
 
-my_dict_one['Десяточка:'] = create_lst(one)
-my_dict_two['Кубит:'] = create_lst(two)
-my_dict_three['Полоса:'] = create_lst(three)
+total_dict['Десяточка:'] = create_lst(one)
+total_dict['Кубит:'] = create_lst(two)
+total_dict['Полоса:'] = create_lst(three)
 
 res = {}
 
-true_value(my_dict_one, res)
-true_value(my_dict_two, res)
-true_value(my_dict_three, res)
-
-print(res)
+true_value(total_dict, res)
 
 
 
