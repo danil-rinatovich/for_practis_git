@@ -93,26 +93,42 @@ def true_value(my_dict, res_dict):
     for key, value in my_dict.items():
         d = {}
         for item in enter:
-            if item in value:
-                d[item] = value[item]
-            else:
-                d[item] = None
-            res_dict[key] = d
+            d[item] = value[item] if item in value else None
+        res_dict[key] = d
     return res_dict
 
-total_dict = {}
-
-total_dict['Десяточка:'] = create_lst(one)
-total_dict['Кубит:'] = create_lst(two)
-total_dict['Полоса:'] = create_lst(three)
+total_dict = {'Десяточка:': create_lst(one), 'Кубит:': create_lst(two), 'Полоса:': create_lst(three)}
 
 res = {}
 
 true_value(total_dict, res)
 
+shops_order = ['Десяточка:', 'Кубит:', 'Полоса:']
 
+answer = {shop: [] for shop in shops_order}
 
+for product in enter:
+    prices = {
+        shop: res[shop][product]
+        for shop in shops_order
+        if res[shop].get(product) is not None
+    }
 
+    if not prices:
+        continue
+
+    min_price = min(prices.values())
+    winners = [shop for shop, p in prices.items() if p == min_price]
+
+    if len(winners) == 1:
+        answer[winners[0]].append(product)
+
+for shop in shops_order:
+    print(f'{shop}')
+    if answer[shop]:
+        print(', '.join(answer[shop]))
+    else:
+        print('–')
 
 
 
